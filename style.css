@@ -75,3 +75,22 @@ button:hover{
     background-color: green;
     color: white;
 }
+
+.score{
+  width: 200px;
+  height: 100px;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  color: white;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+.score p{
+  line-height: 2;
+}
+
+.score p:nth-child(1){
+  border-bottom: 2px solid white;
+}

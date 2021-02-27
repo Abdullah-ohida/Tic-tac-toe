@@ -1,11 +1,15 @@
 const status = document.querySelector(".status");
 const gameCells = document.querySelectorAll(".cell");
 const restart = document.querySelector(".restart");
+const playerX = document.querySelector(".playerX");
+const playerO = document.querySelector(".playerO");
 
 let gameActive = true;
 let currentPlayer = "X";
+let initialScore = 1;
 
 let gameState = ["", "", "", "", "", "", "", "", ""];
+
 
 const winAlert = () => `Player ${currentPlayer}'s has won!`;
 const drawAlert = () => `Game ended is draw!`;
@@ -23,7 +27,9 @@ const winConditions = [
 ];
 
 document.addEventListener("DOMContentLoaded", ()=>{
-    status.textContent = playerTurn();4
+    status.textContent = playerTurn();
+    playerX.textContent = 0;
+    playerO.textContent = 0;
 })
 
 status.textContent = currentPlayer;
@@ -54,20 +60,27 @@ function handleResultValidation() {
 
     if ((pattern1 === pattern2) && (pattern2 === pattern3)) {
       round = true;
+      if(currentPlayer === 'X'){
+        playerX.textContent = initialScore++;
+        }else{
+        playerO.textContent = initialScore++;
+      }
       break;
     }
   }
 
   if (round) {
-    status.textContent = winAlert();
+    status.textContent = Swal.fire(`Player ${currentPlayer}'s has won!`);
     gameActive = false;
+    status.textContent = winAlert();
     return;
   }
 
   let roundDraw = !gameState.includes("");
   if (roundDraw) {
-    status.textContent = drawAlert();
+    status.textContent = Swal.fire(`Game ended is draw!`);
     gameActive = false;
+    status.textContent = drawAlert();
     return;
   }
 
@@ -99,3 +112,14 @@ function handleRestartGame() {
 
 gameCells.forEach((cell) => cell.addEventListener("click", handleCellClick));
 restart.addEventListener("click", handleRestartGame);
+
+
+
+
+// Score
+// Timer
+// Levels
+// Computer to human
+// Alert Box
+// Callback Memory
+// Reload
